@@ -79,7 +79,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Static files (CSS, JS, images)
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Required for Vercel deployment
+STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [
     BASE_DIR / 'myapp/static/myapp',
 ]
