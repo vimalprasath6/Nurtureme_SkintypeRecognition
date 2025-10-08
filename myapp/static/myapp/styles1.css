@@ -1,0 +1,511 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background-size: cover;
+    background-image: url("{% static 'images/bg2.jpg' %}");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    background-color: #a15a2bcf;
+    max-width: 600px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+/* Header Content Wrapper */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Header Images (left and right) */
+.header-image {
+    top: 0;
+    width: 50px;
+    height: auto;
+    margin: 0 15px;
+}
+
+/* Logo Image */
+.logo-image {
+    width: 120px;
+    height: auto;
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.40);
+    position: relative;
+    overflow: hidden;
+    width: 800px;
+    max-width: 100%;
+    min-height: 480px;
+    margin-top: 200px;
+}
+
+.container p {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0px;
+}
+
+.container span {
+    font-size: 15px;
+}
+
+.container a {
+    color: #333;
+    font-size: 11px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+}
+
+.container button {
+    background-color: #a15a2bcf;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.container button.hidden {
+    background-color: transparent;
+    border-color: #fff;
+}
+
+.container form {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+
+.container input {
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.10);
+    border-color: rgb(0, 0, 0) ;
+}
+
+.messadeDiv
+{
+    background-color: #a15a2bcf;
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+
+
+.password-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.password-container input {
+    padding: 8px;
+    font-size: 14px;
+}
+
+.password-container .fa {
+    cursor: pointer;
+    font-size: 18px;
+}
+
+
+.form-container {
+    padding: 5px;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.sign-in {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+.password-container {
+    position: relative; /* Position relative for the container */
+    width: 100%; /* Make it full width */
+}
+
+.password-container input {
+    width: 100%; /* Full width for the input */
+    padding-right: 40px; /* Add padding to the right to make space for the icon */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.password-container i {
+    position: absolute; /* Position absolute for the icon */
+    right: 10px; /* Position it to the right */
+    top: 50%; /* Center it vertically */
+    transform: translateY(-50%); /* Adjust for vertical centering */
+    cursor: pointer; /* Change cursor to pointer */
+    color: #999; /* Optional: change icon color */
+}
+
+.container.active .sign-in {
+    transform: translateX(100%);
+}
+
+.signup {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.container.active .signup {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move 0.6s ease-in-out;
+}
+
+@keyframes move {
+    0%, 49.99% {
+        opacity: 0;
+        z-index: 1;
+        transform: translateX(50%);
+    }
+    50%, 100% {
+        opacity: 1;
+        z-index: 5;
+        transform: translateX(100%);
+    }
+}
+
+.toggle-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    border-radius: 150px 0 0 100px;
+    z-index: 1000;
+}
+
+.container.active .toggle-container {
+    transform: translateX(-100%);
+    border-radius: 0 150px 100px 0;
+}
+
+.toggle {
+    background-color: #a15a2bcf;
+    height: 100%;
+    background: linear-gradient(to right, #a15a2bdf, #a15a2bdf);
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.toggle-panel {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.toggle-left {
+    transform: translateX(-200%);
+    transition: transform 0.7s ease-in-out;
+}
+
+.container.active .toggle-left {
+    transform: translateX(100%);
+}
+
+.toggle-right {
+    right: 0;
+    transform: translateX(0);
+    transition: transform 0.7s ease-in-out;
+}
+
+.container.active .toggle-right {
+    transform: translateX(200%);
+}
+
+footer {
+    position: relative; /* Ensure footer stays at the bottom of the content */
+    bottom: 0;
+    width: 100%; /* Span the entire width */
+    text-align: center;
+    padding: 10px 0;
+    background-color: #a15a2bcf;
+    color: white;
+    font-size: 12px;
+    margin-top: auto;
+}
+
+
+@media (max-width: 1080px) {
+    body {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+    }
+    .container {
+        padding: 15px;
+        max-width: 85%;
+    }
+
+    header {
+        padding: 10px;
+    }
+
+    .header-image {
+        width: 30px;
+    }
+
+    .logo-image {
+        width: 80px;
+    }
+
+    .container input,
+    .container button {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    footer {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh; /* Full height of the viewport */
+        margin: 0;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+    }
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0;
+    }
+
+    .logo-image {
+        max-width: 80px;
+        margin-bottom: 10px;
+    }
+
+    .container {
+        max-width: 90%;
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    footer {
+        font-size: 0.75rem;
+        padding: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        display: grid;
+        place-items: center;
+        height: 100vh; /* Full height of the viewport */
+        margin: 0;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+    }
+
+    .container {
+        padding: 10px;
+        max-width: 70%;
+        margin: 200px auto;
+        margin-left: 250px;
+    }
+
+    .header-image {
+        width: 25px;
+        margin: 5px 0;
+    }
+
+    .logo-image {
+        width: 70px;
+    }
+
+    .container p {
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .container input {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .container button {
+        padding: 6px 20px;
+        font-size: 11px;
+    }
+
+    footer {
+        font-size: 0.7em;
+        padding: 0.5em 0.5em;
+    }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio:3) {
+    body {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+    }
+    .container {
+        padding: 10px;
+    }
+
+    .header-image {
+        width: 25px;
+        margin: 5px 0;
+    }
+
+    .logo-image {
+        width: 70px;
+    }
+
+    .container p {
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .container input {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .container button {
+        padding: 6px 20px;
+        font-size: 11px;
+    }
+
+    footer {
+        font-size: 0.7em;
+        padding: 0.5em 0.5em;
+    }  
+}
+
+@media (max-width: 380px) {
+    body {
+        background-size: cover; /* Ensures the image covers the entire background */
+        background-position: center; /* Centers the image */
+        background-repeat: no-repeat; /* Prevents tiling */
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; /* Adjust alignment for smaller screens */
+        max-height: 100vh; /* Full viewport height */
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+        object-fit: contain;
+    }
+
+    header { 
+        max-width: 60%;
+        margin: auto;
+        position: fixed;
+        top: 0;
+    }
+
+    .logo-image {
+        max-width: 80px;
+        margin-bottom: 5px; /* Slight adjustment for spacing */
+    }
+
+    .container {
+        width: 100%;
+        max-width: 70%; /* Maintain responsive layout */
+        margin-left: 10%;
+        margin-top: 350px; /* Reduced to prevent overflow */
+    }
+
+    footer {
+        position: fixed; /* Stick footer to the bottom */
+        bottom: 0; /* Align at the very bottom */
+        font-size: 0.90rem;
+        width: 100%; /* Ensure it spans the full width */
+        max-width: 100%;
+    }
+}
+
+
+
+

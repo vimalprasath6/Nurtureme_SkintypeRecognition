@@ -1,0 +1,748 @@
+/* Global body settings with fixed background */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('{% static "myapp/images/bg2.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Keeps the background fixed */
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+}
+
+ /* Header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #a15a2bcf;
+    color: white;
+    padding: 0.4em 1.5em;
+    width: 600px;
+    font-size: 1.8em;
+    font-weight: bold;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    margin: 0 auto;
+    position: relative;
+    flex-shrink: 0; /* Prevent shrinking */
+    position: sticky; /* Stick to the top when scrolling */
+    top: 0;
+    z-index: 1000; /* Ensure it stays above other elements */
+}
+
+    .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .header-image, .user-icon {
+        width: 100px;
+        height: auto;
+        margin: 0 50px;
+    }
+
+    .logo-image {
+        width: 125px;
+        height: auto;
+    }
+
+
+
+
+    
+
+/* Main Content Section */
+.main-content {
+    flex-grow: 1; /* Allow content to grow and scroll */
+    overflow: auto; /* Enable scrolling for main content */
+    display: flex; /* Arrange containers horizontally */
+    justify-content: center; /* Center the containers */
+    align-items: center; /* Align containers vertically */
+    gap: 20px; /* Add space between containers */
+    width: 100%;
+    padding: 20px; /* Add padding for spacing */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: row;
+        justify-content: center;
+        align-self: center;
+        max-width: 40%;
+    }
+
+    .navbar {
+        height: 25%; /* Reduce height for smaller screens */
+    }
+
+    .main-content {
+        flex-direction: column; /* Stack containers vertically on small screens */
+        gap: 10px; /* Reduce gap for smaller screens */
+        overflow-y: auto; /* Ensure scrollable content */
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+
+    footer {
+        margin-top: auto; /* Push footer to the bottom */
+        padding: 0.5em 1em;
+        flex-shrink: 0; /* Prevent the footer from shrinking */
+    }
+}
+
+
+
+/* Button Styling with Enhanced Glow */
+.btn {
+    display: inline-block;
+    position: relative;
+    width: 155px;
+    height: 50px;
+    margin: 20px;
+    text-align: center;
+}
+
+.btn a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #442714; /* Updated to the desired color */
+    background: rgba(128, 44, 5, 0.388);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(250, 52, 52, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 10;
+    color: #fff;
+    border-radius: 30px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: 0.5s;
+    overflow: hidden;
+    backdrop-filter: blur(15px);
+}
+
+.btn a:hover {
+    letter-spacing: 3px;
+}
+
+.btn a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.3), transparent);
+    transform: skewX(45deg);
+    transition: 0.5s;
+    transition-delay: 0.5s;
+}
+
+a:hover::before {
+    transform: skewX(45deg) translateX(200%);
+    transition-delay: 0s;
+}
+
+.btn::before, .btn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.6);
+    width: 30px;
+    height: 10px;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0s;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+.btn:hover::before, .btn:hover::after {
+    height: 50%;
+    width: 80%;
+    border-radius: 30px;
+    transition-delay: 0.5s;
+}
+
+/* Add this to your styles3.css file */
+#product-btn {
+    display: none !important;
+}
+
+.btn:has(#product-btn) {
+    display: none !important;
+}
+
+/* Optional: For smooth appearance when shown */
+#product-btn.show,
+.btn:has(#product-btn.show) {
+    display: block !important;
+}
+
+
+    
+    /* Centered Floating Navbar */
+    .navbar {
+        position: fixed; /* Keep navbar fixed while scrolling */
+        top: 50%; /* Center vertically */
+        left: 20px;
+        transform: translateY(-50%);
+        background-color: #a15a2bcf;
+        width: 60px;
+        height: 35%;
+        border-radius: 10px;
+        box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.5);
+        transition: width 0.3s ease-in-out, height 0.3s ease;
+        overflow: hidden;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar.expanded {
+        width: 180px; /* Further increased expanded width */
+    }
+
+    /* Navigation Button */
+    .nav-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 50px;
+        background-color: #442714;
+        cursor: pointer;
+        color: white;
+        font-size: 1.5em;
+    }
+
+    /* Navigation Content */
+    .nav-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center contents inside */
+        justify-content: center; /* Center contents inside */
+        width: 100%;
+        padding: 1em 0;
+        gap: 0.8em; /* Space between items */
+        height: 100%; /* Full height of navbar */
+        overflow-y: auto; /* Enable vertical scrolling when content overflows */
+        scroll-behavior: smooth; /* Smooth scrolling when scrolling */
+    }
+
+    /* Hide scrollbar completely */
+    .nav-content::-webkit-scrollbar {
+        display: none; /* Hide the scrollbar in WebKit browsers */
+    }
+
+    .nav-content {
+        -ms-overflow-style: none; /* For Internet Explorer */
+        scrollbar-width: none; /* For Firefox */
+    }
+
+    /* Show text on hover */
+    .navbar.expanded .nav-content a span {
+        display: inline;
+        opacity: 1;
+    }
+
+    /* Align icons and text consistently */
+    .nav-content a {
+        text-align: left; /* Ensure consistent text alignment */
+    }
+
+    .nav-content a {
+        display: flex;
+        flex-direction: row; /* Ensure icons and text are in a row */
+        align-items: center;
+        justify-content: flex-start; /* Align icons and text to the start */
+        color: white;
+        text-decoration: none;
+        font-size: 1em;
+        width: 100%;
+        padding: 0.5em 1.5em; /* Add padding for spacing, with extra left padding */
+        padding-left: 3.5em; /* Add extra left padding for space from the edge */
+        gap: 1em; /* Space between the icon and the text */
+        transition: background-color 0.3s ease;
+    }
+
+    .nav-content a:hover {
+        background-color: #442714;
+        border-radius: 20px;
+    }
+
+    /* Ensure icons are uniform in size */
+    .nav-content a img.nav-icon {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0; /* Prevent icons from resizing */
+    }
+
+    /* Ensure text is hidden by default */
+    .nav-content a span {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    /* Show text on hover */
+    .navbar.expanded .nav-content a span {
+        display: inline;
+        opacity: 1;
+    }
+
+    /* Align icons and text consistently */
+    .nav-content a {
+        text-align: left; /* Ensure consistent text alignment */
+    }
+
+
+
+/* Make sure the body and html elements take full height */
+html, body {
+    height: 100%; /* Ensure the body takes up full viewport height */
+    margin: 0;
+    padding: 0;
+}
+
+/* Flexbox layout for the entire page */
+body {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+}
+
+/* Main content will take the remaining space */
+.main-content {
+    flex-grow: 1; /* Allow the main content to grow and fill available space */
+}
+
+/* Footer */
+footer {
+    position: sticky;
+    text-align: center;
+    padding: 0.5em 1em;
+    background-color: #a15a2bcf;
+    color: white;
+    font-size: 0.9em;
+    bottom: 0;
+    margin-top: auto; /* Push footer to the bottom */
+    z-index: 1000; /* Ensure it stays above other elements */
+}
+
+/* Logout Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(24, 24, 24, 0.284);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0));   
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow: 0 8px 32px 0 rgba(255,255,255,0.37);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 350px;
+    width: 80%;
+}
+
+.modal-button {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Modal Button Styles */
+.modal-button {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.button {
+    padding: 10px 5px;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 40px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    width: 35%; /* Make buttons of equal size */
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Ensure buttons are inline */
+}
+
+/* Button for 'Yes' (l1) */
+.button-yes {
+    background: linear-gradient(135deg,rgba(255, 255, 255, 0.158),rgba(255, 255, 255, 0.141));   
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.18);
+}
+
+/* Button for 'No' (l2) */
+.button-no {
+    background-color: #a15a2bcf;
+    color: white;
+}
+
+/* Hover effect for both buttons */
+.button:hover {
+    opacity: 0.9;
+}
+
+/* Optional: Focus effect for accessibility */
+.button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}    
+
+
+/* Style for the status section */
+#status-section {
+    margin: 15px auto;
+    text-align: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: opacity 0.3s ease-out;
+}
+
+ 
+
+/* Styling for status and lighting messages */
+.status-message, .lighting-message {
+    font-size: 16px;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+/* Default state - red (no face or poor lighting) */
+.status-message {
+    background-color: #ffcccc; /* Light red for failure */
+    color: #d8000c; /* Dark red text */
+    border: 1px solid #f5c6cb;
+}
+
+.lighting-message {
+    background-color: #ffcccc; /* Light red for failure */
+    color: #d8000c; /* Dark red text */
+    border: 1px solid #f5c6cb;
+}
+
+/* Green state for successful detection */
+.face-detected .status-message {
+    background-color: #d9f7be; /* Light green */
+    color: #237804; /* Dark green text */
+    border: 1px solid #b7eb8f;
+}
+
+/* Green state for good lighting */
+.lighting-good .lighting-message {
+    background-color: #237804; /* Light green */
+    color: #000000; /* Dark green text */
+    border: 1px solid #b7eb8f;
+}
+
+/* Red state for poor lighting */
+.lighting-poor .lighting-message {
+    background-color: #d8000c; /* Light red */
+    color: #000000; /* Dark red text */
+    border: 1px solid #f5c6cb;
+}
+
+/* Red state for face not detected */
+.face-not-detected .status-message {
+    background-color: #ffcccc; /* Light red */
+    color: #d8000c; /* Dark red text */
+    border: 1px solid #f5c6cb;
+}
+
+
+/* Webcam and Video Section */
+#webcam-section, #video-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px; /* Space below the header */
+    width: 100%;
+    max-width: 600px; /* Keep content width consistent */
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+#video {
+    border: 1px solid #442714;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+#prediction-message {
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+/* Logout Modal */
+.modal {
+    color: white;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(24, 24, 24, 0.284);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    color: white;
+    background: linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0));   
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow: 0 8px 32px 0 rgba(255,255,255,0.37);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 350px;
+    width: 80%;
+}
+
+.modal-button {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Modal Button Styles */
+.modal-button {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.button {
+    color: white;
+    padding: 10px 5px;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 40px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    width: 35%; /* Make buttons of equal size */
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Ensure buttons are inline */
+}
+
+/* Button for 'Yes' (l1) */
+.button-yes {
+    color: white;
+    background: linear-gradient(135deg,rgba(255, 255, 255, 0.158),rgba(255, 255, 255, 0.141));   
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.18);
+}
+
+/* Button for 'No' (l2) */
+.button-no {
+    background-color: #a15a2bcf;
+    color: white;
+}
+
+/* Hover effect for both buttons */
+.button:hover {
+    opacity: 0.9;
+}
+
+/* Optional: Focus effect for accessibility */
+.button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+
+.loading-status {
+    text-align: center;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 390px;
+    overflow: hidden;
+  }
+  
+  .progress-bar {
+    height: 15px;
+    background: #eee;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .progress {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #8a4e25, #a15a2b);
+    position: relative;
+    transition: width 0.3s ease;
+  }
+  
+  .progress::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      transparent 100%
+    );
+    animation: wave 1.5s infinite linear;
+  }
+  
+  .progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2) 30%,
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0.2) 70%,
+      transparent
+    );
+    animation: shimmer 2s infinite linear;
+  }
+  
+  .steps-container {
+    position: relative;
+    height: 40px;
+    overflow: hidden;
+  }
+  
+  .step {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.5s ease;
+  }
+  
+  .step.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .step.exit {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  
+  .icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8f5fe;
+    font-size: 0.9rem;
+  }
+  
+  .step-text {
+    font-size: 0.85rem;
+    color: #555;
+  }
+  
+  @keyframes wave {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  
+  .icon.animate {
+    animation: pulse 1s infinite;
+  }
+
+
+
+
+
+  
+
+

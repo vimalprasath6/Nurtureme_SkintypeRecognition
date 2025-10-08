@@ -1,0 +1,231 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NurtureMe - Skin Care Solutions</title>
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <link rel="stylesheet" href="{% static 'myapp/styles3.css' %}">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <script src="{% static 'script3.js' %}" defer></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('{% static "myapp/images/bg2.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #result-message {
+            font-size: 18px;
+            margin-top: 20px;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+    </style>
+</head>
+<body>
+    <!-- Floating Navigation Bar -->
+    <div id="navbar" class="navbar">
+        <div class="nav-button" onclick="toggleMenu()">
+            <span>&#9776;</span>
+        </div>
+        <div class="nav-content">
+            
+            <a href="#home"id="home-button" data-home-url="{% url 'index2' %}">
+                <i class="fa-solid fa-house" style="color: #ffffff;" alt="Home" class="nav-icon"></i>
+                <span>Home</span>
+            </a>
+            <a href="#about">
+                <i class="fa-solid fa-circle-info" style="color: #ffffff;" alt="About" class="nav-icon"></i>
+                <span>About</span>
+            </a>
+            <a href="#products">
+                <i class="fa-solid fa-bag-shopping" style="color: #ffffff;" alt="Products" class="nav-icon"></i>                
+                <span>Products</span>
+            </a>
+            <a href="#webcam">
+                <i class="fa-solid fa-camera" style="color: #ffffff;" alt="Capture" class="nav-icon"></i>
+                <span>Capture</span>
+            </a>
+            <a href="#contact">
+                <i class="fa-solid fa-envelope" style="color: #ffffff;" alt="Contact" class="nav-icon"></i>
+                <span>Contact us</span>
+            </a>
+            <a href="#logout" id="logout-button">
+                <i class="fa-solid fa-arrow-right-from-bracket" style="color: #ffffff;" alt="Log Out" class="nav-icon"></i>  
+                <span>Log out</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="header-container">
+        <header>
+            <div class="logo-image">
+                <img src="{% static 'myapp/images/logo.png' %}" alt="NurtureMe Logo" class="logo-image">
+            </div>
+        </header>
+    </div>
+
+    <main>
+        <div class="main-content">
+                <div id="webcam-section">
+
+                    <div id="video-container" >
+                        <video id="video" autoplay ></video>
+                    </div>
+
+                    <!-- Status Section -->
+                    <div id="status-section">
+                        <p id="status-message" class="status-message">Status: Waiting for face detection...</p>
+                        <p id="lighting-message" class="lighting-message">Lighting: Waiting for analysis...</p>
+                    </div>
+
+                    <!-- Add this right before the capture button div -->
+<div class="loading-status" style="display: none; margin: 20px auto;">
+    <div class="progress-bar">
+      <div class="progress"></div>
+    </div>
+    
+    <div class="steps-container">
+      <div class="step" id="step1">
+        <div class="icon">📤</div>
+        <div class="step-text">Sending to server...</div>
+      </div>
+      
+      <div class="step" id="step2">
+        <div class="icon">🔍</div>
+        <div class="step-text">AI is analyzing your skin...</div>
+      </div>
+      
+      <div class="step" id="step3">
+        <div class="icon">🏄</div>
+        <div class="step-text">Surfing for the products...</div>
+      </div>
+    </div>
+  </div>
+
+                    <form method="POST" action="{% url 'predict_skin_type' %}">
+                        {% csrf_token %}
+                        <!-- Capture Button -->
+                    <div class="btn">
+                        <a type="submit" id="capture-btn" onclick="captureImage()">Capture</a>
+                    </div>    
+                    </form> 
+
+                    
+                    <div id="prediction-message"></div>   
+
+                        <!-- View Products button -->
+                        <div class="btn">
+                            <a type="Submit" id="product-btn" href="{% url 'navigate_to_index4' %}">View Products</a>
+                        </div>                        
+                </div> 
+            </div>
+        </div>
+    </main>
+
+    <div id="logout-modal" class="modal">
+        <div class="modal-content">
+            <h2>Confirm Logout</h2>
+            <p>Are you sure you want to log out?</p>
+            <div class="modal-buttons">
+                <button id="logout-yes" class="button button-yes">Yes</button>
+                <button id="logout-no" class="button button-no">No</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="home-modal" class="modal">
+        <div class="modal-content">
+            <h2>Confirm </h2>
+            <p>Are you sure you want to go home?</p>
+            <div class="modal-buttons">
+                <button id="home-yes" class="button button-yes">Yes</button>
+                <button id="home-no" class="button button-no">No</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 NurtureMe | All Rights Reserved</p>
+    </footer>
+
+    <div id="result-message"></div>
+
+    <script>
+        function toggleMenu() {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('expanded');
+        }
+
+        function captureImage() {
+            const video = document.getElementById('video');
+            let canvas = document.getElementById('capture-canvas');
+
+            // Ensure the canvas exists
+            if (!canvas) {
+                canvas = document.createElement('canvas');
+                canvas.id = 'capture-canvas';
+                canvas.style.display = 'none'; // Hide the canvas
+                document.body.appendChild(canvas); // Append to the body or a specific container
+            }
+
+            const context = canvas.getContext('2d');
+            if (!context) {
+                console.error('Unable to get 2D context from canvas');
+                return;
+            }
+
+            // Set canvas dimensions to match video dimensions
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+            // Draw the current frame of the video onto the canvas
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // Convert canvas to a Base64 encoded image
+            const imageData = canvas.toDataURL('image/png');
+
+            // Stop the video stream and freeze the frame
+            const stream = video.srcObject;
+            if (stream) {
+                const tracks = stream.getTracks();
+                tracks.forEach((track) => track.stop());
+                video.srcObject = null; // Clear the video source
+            }
+
+            // Replace the video feed with the captured image
+            video.style.display = 'none'; // Hide the video element
+            const img = document.createElement('img'); // Create a new image element
+            img.src = imageData; // Set the captured image as the source
+            img.id = 'captured-image'; // Add an ID for styling or further manipulation
+            video.parentNode.appendChild(img); // Add the image to the same container as the video
+
+            // Optionally send the captured image to the server
+            sendToServer(imageData);
+        }
+
+        function sendToServer(imageData) {
+            console.log('Image sent to server:', imageData);
+            // Implement your server communication logic here
+        }
+        const logoutRedirectUrl = "{% url 'index1' %}";
+        const homeRedirectUrl = "{% url 'index2' %}";
+
+    </script>
+</body>
+</html>

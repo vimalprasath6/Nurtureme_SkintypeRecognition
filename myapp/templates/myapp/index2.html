@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'myapp/styles2.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NurtureMe - Skin Care Solutions</title>
+    <script src="{% static 'script2.js' %}" defer></script>
+    <style>
+        /* General styles */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('{% static "myapp/images/bg2.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #a15a2bcf;
+            color: white;
+            padding: 0.4em 1.5em;
+            width: 600px;
+            font-size: 1.8em;
+            font-weight: bold;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .header-image, .user-icon {
+            width: 100px;
+            height: auto;
+            margin: 0 50px;
+        }
+
+        .logo-image {
+            width: 125px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Navigation Bar -->
+    <div id="navbar" class="navbar">
+        <div class="nav-button" onclick="toggleMenu()">
+            <span>&#9776;</span>
+        </div>
+        <div class="nav-content">
+            <a href="#home">
+                <i class="fa-solid fa-house" style="color: #ffffff;" alt="Home" class="nav-icon"></i>
+                <span>Home</span>
+            </a>
+            <a href="#about">
+                <i class="fa-solid fa-circle-info" style="color: #ffffff;" alt="About" class="nav-icon"></i>
+                <span>About</span>
+            </a>
+            <a href="#products">
+                <i class="fa-solid fa-bag-shopping" style="color: #ffffff;" alt="Products" class="nav-icon"></i>
+                <span>Products</span>
+            </a>
+            <a href="#webcam">
+                <i class="fa-solid fa-camera" style="color: #ffffff;" alt="About" class="nav-icon"></i>
+                <span>Capture</span>
+            </a>
+            <a href="#contact">
+                <i class="fa-solid fa-envelope" style="color: #ffffff;" alt="Contact" class="nav-icon"></i>
+                <span>Contact us</span>
+            </a>
+            <a href="#logout" id="logout-button">
+                <i class="fa-solid fa-arrow-right-from-bracket" style="color: #ffffff;" alt="Contact" class="nav-icon"></i>  
+                <span>Log out</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="header-container">
+        <header>
+            <div class="logo-image">
+                <img src="{% static 'myapp/images/logo.png' %}" alt="NurtureMe Logo" class="logo-image">
+            </div>
+        </header>
+    </div>
+
+    <main>
+        <div class="centered-image">
+            <img src="{% static 'myapp/images/dectext.png' %}" alt="Decorative Text" class="dectext-image">
+        </div>
+
+        <section id="about">
+            <h2>About NurtureMe</h2>
+            <p>At NurtureMe, we recognize your unique skin needs and provide personalized skincare product recommendations. Our cutting-edge AI technology analyzes your skin type in real-time and suggests the best skincare products to keep you glowing skin naturally. Join us in revolutionizing skincare with the power of technology!</p>
+        </section>
+
+        <section id="products">
+            <h2>Skin Types</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <h3>Oily</h3>
+                    <p>Oily skin, also known as seborrhea, is a common skin condition that occurs when the skin produces too much sebum, an oily substance that can cause acne too.</p>
+                </div>
+                <div class="product-card">
+                    <h3>Normal</h3>
+                    <p>Normal skin is a well-balanced skin type that is neither too dry nor too oily. It has a regular texture, a clean, soft appearance, and no imperfections.</p>
+                </div>
+                <div class="product-card">
+                    <h3>Dry</h3>
+                    <p>Dry skin is a common condition that occurs when the skin loses too much water and oil. It can cause the skin to feel rough, itchy, flaky, or scaly, and it can appear red or ashy gray. Other symptoms include: Fine cracks, Peeling, Pain, stinging, or burning, Wrinkled texture, and Skin infections.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="webcam">
+            <h2>Explore</h2>
+            <div class="btn">
+                <a onclick="window.location.href='{% url 'index3' %}'" type="submit" id="capture-image-button">Capture Image</a>
+            </div>
+            <div class="btn">
+                <a href="/index3" id="View-Products-button">View Products</a>
+            </div>
+        </section>
+    </main>
+
+    <div id="logout-modal" class="modal">
+        <div class="modal-content">
+            <h2>Confirm Logout</h2>
+            <p>Are you sure you want to log out?</p>
+            <div class="modal-buttons">
+                <button id="logout-yes" class="button button-yes">Yes</button>
+                <button id="logout-no" class="button button-no">No</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 NurtureMe | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('expanded');
+        }
+        const logoutRedirectUrl = "{% url 'index1' %}";
+        const homeRedirectUrl = "{% url 'index2' %}";
+    </script>
+</body>
+</html>
+
+

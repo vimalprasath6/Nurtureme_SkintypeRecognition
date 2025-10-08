@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'myapp/styles4.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NurtureMe - Skin Care Products</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('{% static "myapp/images/bg2.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #a15a2bcf;
+            color: white;
+            padding: 0.4em 1.5em;
+            width: 600px;
+            font-size: 1.8em;
+            font-weight: bold;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .header-image, .user-icon {
+            width: 100px;
+            height: auto;
+            margin: 0 50px;
+        }
+
+        .logo-image {
+            width: 125px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+        <!-- Floating Navigation Bar -->
+        <div id="navbar" class="navbar">
+            <div class="nav-button" onclick="toggleMenu()">
+                <span>&#9776;</span>
+            </div>
+            <div class="nav-content">
+                <a href="#home" id="home-button" data-home-url="{% url 'index2' %}">
+                    <i class="fa-solid fa-house" style="color: #ffffff;" alt="Home" class="nav-icon"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#about">
+                    <i class="fa-solid fa-circle-info" style="color: #ffffff;" alt="About" class="nav-icon"></i>
+                    <span>About</span>
+                </a>
+                <a href="#products">
+                    <i class="fa-solid fa-bag-shopping" style="color: #ffffff;" alt="Products" class="nav-icon"></i>                
+                    <span>Products</span>
+                </a>
+                <a href="#webcam">
+                    <i class="fa-solid fa-camera" style="color: #ffffff;" alt="Capture" class="nav-icon"></i>
+                    <span>Capture</span>
+                </a>
+                <a href="#contact">
+                    <i class="fa-solid fa-envelope" style="color: #ffffff;" alt="Contact" class="nav-icon"></i>
+                    <span>Contact us</span>
+                </a>
+                <a href="#logout" id="logout-button">
+                    <i class="fa-solid fa-arrow-right-from-bracket" style="color: #ffffff;" alt="Log Out" class="nav-icon"></i>  
+                    <span>Log out</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="header-container">
+            <header>
+                <div class="logo-image">
+                    <img src="{% static 'myapp/images/logo.png' %}" alt="NurtureMe Logo" class="logo-image">
+                </div>
+            </header>
+        </div>
+    
+        <main>
+    <div>
+        <h3>You have Oily Skin. These are the products we suggest you to use</h3>
+        
+    </div>
+    
+    <main>
+        <div class="grid-container">
+            <div class="product-container">
+                <img src="NurtureMe\SalicylicCleanserNew.avif" alt="Product Image">
+                <h2 class="p">Salicyclic Cleanser </h2>
+                <p class="description">
+                    A salicylic cleanser is a gentle yet effective face wash formulated with salicylic acid to unclog pores, reduce excess oil, and prevent acne.</p>
+                <div class="price-buy-container">
+                    <p class="price">₹499</p>
+                    <button class="buy-button">Buy</button>
+                </div>
+                <div class="rating">4.3</div>
+            </div>
+            
+                <div class="product-container">
+                    <img src="\NurtureMe\VitaminC10_1200-1-min.avif" alt="Product Image">
+                    <h2 class="p">Vitamin C Serum</h2>
+                    <p class="description">This lightweight, antioxidant-rich serum brightens the skin, evens out tone, and reduces the appearance of dark spots.</p>
+                    <div class="price-buy-container">
+                        <p class="price">₹429</p>
+                        <button class="buy-button">Buy</button>
+                    </div>
+                    <div class="rating">4.5</div>
+                </div>
+                
+                <div class="product-container">
+                    <img src="/NurtureMe/02b_oil_control_facial_moisturizer_3oz_us_packshot_0048_main_pack_front_700x785.webp" alt="Product Image">
+                    <h2 class="p">Oil Control Moisturizing Gel</h2>
+                    <p class="description">A luxurious moisturizer formulated to promote smoother, firmer, and more radiant skin</p>
+                    <div class="price-buy-container">
+                        <p class="price">₹399</p>
+                        <button class="buy-button">Buy</button>
+                    </div>
+                    <div class="rating">4.1</div>
+                </div>
+                
+                <div class="product-container">
+                    <img src="/NurtureMe/01_skin_renewing_night_cream_jar_front_packshot-700x875-v2.webp" alt="Product Image">
+                    <h2 class="p">Skin Renewing Cream</h2>
+                    <p class="description">A rich, nourishing cream designed to rejuvenate and hydrate the skin while promoting a smoother, more youthful appearance.</p>
+                    <div class="price-buy-container">
+                        <p class="price">₹799</p>
+                        <button class="buy-button">Buy</button>
+                    </div>
+                    <div class="rating">4.7</div>
+                </div>
+                
+                <div class="product-container">
+                    <img src="/NurtureMe/SPF50New.avif" alt="Product Image">
+                    <h2 class="p">SPF 50 Sunscreen</h2>
+                    <p class="description">
+                        A lightweight SPF 50 sunscreen that provides broad-spectrum protection against UVA and UVB rays, helping prevent sunburn and skin damage</p>
+                    <div class="price-buy-container">
+                        <p class="price">₹629</p>
+                        <button class="buy-button">Buy</button>
+                    </div>
+                    <div class="rating">4.3</div>
+                </div>
+                
+                <div class="product-container">
+                    <img src="/NurtureMe/renewing_sa_cleanser_8oz_front_new-700x875-v2.webp" alt="Product Image">
+                    <h2 class="p">Skin Renewing Night Cream</h2>
+                    <p class="description">A rich, hydrating night cream designed to restore and rejuvenate the skin while you sleep.</p>
+                    <div class="price-buy-container">
+                        <p class="price">₹359</p>
+                        <button class="buy-button">Buy</button>
+                    </div>
+                    <div class="rating">4.8</div>
+                </div>
+                
+                <div class="product-container">
+                    <img src="/NurtureMe/2-niacinamide_oily_skin_cleanser_for_sensitive_oily_combination_skin.png" alt="Product Image">
+                    <h2 class="p">Oily Skin Cleanser</h2>
+                    <p class="description">
+                        An oily skin cleanser is specifically designed to remove excess oil, dirt, and impurities without stripping the skin’s natural moisture.</p>
+                    <div class="price-buy-container">
+                        <p class="price">₹869</p>
+                        <button class="buy-button">Buy</button>
+                    </div>
+                    <div class="rating">3.9</div>
+                </div>
+        </div>
+
+        <div id="logout-modal" class="modal">
+            <div class="modal-content">
+                <h2>Confirm Logout</h2>
+                <p>Are you sure you want to log out?</p>
+                <div class="modal-buttons">
+                    <button id="logout-yes" class="button button-yes">Yes</button>
+                    <button id="logout-no" class="button button-no">No</button>
+                </div>
+            </div>
+        </div>
+    
+        <div id="home-modal" class="modal">
+            <div class="modal-content">
+                <h2>Confirm </h2>
+                <p>Are you sure you want to go home?</p>
+                <div class="modal-buttons">
+                    <button id="home-yes" class="button button-yes">Yes</button>
+                    <button id="home-no" class="button button-no">No</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>2024 NurtureMe | All Rights Reserved</p>
+        </footer>
+
+        <script>
+            function toggleMenu() {
+                const navbar = document.getElementById('navbar');
+                navbar.classList.toggle('expanded');
+            }
+            const logoutRedirectUrl = "{% url 'index1' %}";
+            const homeRedirectUrl = "{% url 'index2' %}";
+        </script>
+</body>
+</html>       

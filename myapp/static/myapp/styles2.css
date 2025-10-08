@@ -1,0 +1,467 @@
+/* General styles */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #a15a2bcf;
+    color: white;
+    padding: 0.8em 1.5em;
+    width: 100%;
+    max-width: 600px;
+    font-size: 1.8em;
+    font-weight: bold;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Header Content Wrapper */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+
+/* Logo Image */
+.logo-image 
+{
+    width: 120px;
+    height: auto;
+}
+/* Center and enlarge the decorative text image */
+.centered-image 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5em 0; /* Add space above and below the image */
+    padding-left: 5em;
+}
+
+.dectext-image 
+{
+    max-width: 30%; /* Adjust size relative to the viewport */
+    height: auto;
+    display: block;
+}
+
+
+/* About Section */
+#about h2, #products h2, #webcam h2 
+{
+    color: #442714;
+    text-align: center;
+    margin-top: 2.5em;
+}
+
+#about p 
+{
+    font-size: 1.5em;
+    text-align: center;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 1.5em;
+}
+
+/* Product Section */
+.product-grid 
+{
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    padding: 2.5em;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    background-color: #a15a2b96;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    padding: 1.5em;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add smooth transition for scaling */
+}
+
+.product-card:hover {
+    transform: scale(1.2); /* Increase the size of the card to 1.2 times */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 25px rgba(255, 255, 255, 0.8); /* Add stronger shadow on hover */
+}
+
+
+.product-card h3 
+{
+    color: #442714;
+}
+
+
+
+/* Increase size and make the button a parallelogram */
+.btn {
+    left: 0;
+    top: 0;
+    display: inline-block;
+    position: relative;
+    width: 400px; /* Increased width */
+    height: 60px; /* Increased height */
+    margin: 20px;
+    text-align: center;
+    transform: skewX(-20deg); /* Make the button a parallelogram */
+    border-radius: 50px;
+}
+
+.btn a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(90, 31, 3, 0.543);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(250, 52, 52, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 10;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: 0.5s;
+    overflow: hidden;
+    backdrop-filter: blur(15px);
+}
+
+/* Hover effect remains the same */
+.btn a:hover {
+    letter-spacing: 3px;
+}
+
+.btn a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.3), transparent);
+    transform: skewX(45deg);
+    transition: 0.5s;
+    transition-delay: 0.5s;
+}
+
+a:hover::before {
+    transform: skewX(45deg) translateX(200%);
+    transition-delay: 0s;
+}
+
+.btn::before, .btn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.6);
+    width: 30px;
+    height: 10px;
+    border-radius: 5px;
+    transition: 0.5s;
+    transition-delay: 0s;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+.btn:hover::before, .btn:hover::after {
+    height: 50%;
+    width: 80%;
+    border-radius: 30px;
+    transition-delay: 0.5s;
+}
+
+/* Center the Capture Image button */
+#webcam {
+    text-align: center;
+    margin-top: 2em;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 0.5em 1em;
+    background-color: #a15a2bcf;
+    color: white;
+    font-size: 0.9em;
+    margin-top: auto;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    body {
+        background-size: cover;
+    }
+
+    header {
+        font-size: 1.5em;
+        width: 90%;
+        max-width: 100%;
+        padding: 0.8em 1.2em;
+        margin-top: 2em;
+    }
+
+    .header-container {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .header-image {
+        width: 30px;
+        margin: 0 15px;
+    }
+
+    .logo-image {
+        width: 100px;
+    }
+
+    .product-grid {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 3em;
+    }
+
+    .product-card {
+        width: 80%;
+        margin-bottom: 2em;
+    }
+ 
+    footer {
+        padding: 2.5em 1em;
+        margin-top: 3em;
+    }
+
+    .navbar {
+        width: 35px; /* Increased width */
+        height: 200px; /* Covers a portion of the screen */
+    }
+}
+
+
+
+ /* Centered Floating Navbar */
+.navbar {
+    position: fixed;
+    top: 50%; /* Center vertically */
+    left: 20px; /* Add gap from the left side */
+    transform: translateY(-50%); /* Adjust for proper centering */
+    background-color: #a15a2bcf;
+    width: 60px; /* Increased width */
+    height: 35%; /* Covers a portion of the screen */
+    border-radius: 10px; /* Smooth edges */
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.5);
+    transition: width 0.3s ease-in-out, height 0.3s ease;
+    overflow: hidden;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar.expanded {
+    width: 180px; /* Further increased expanded width */
+    height: 40%;
+}
+
+/* Navigation Button */
+.nav-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    background-color: #442714;
+    cursor: pointer;
+    color: white;
+    font-size: 1.5em;
+}
+
+/* Navigation Content */
+.nav-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center contents inside */
+    justify-content: center; /* Center contents inside */
+    width: 100%;
+    padding: 1em 0;
+    gap: 0.8em; /* Space between items */
+    height: 100%; /* Full height of navbar */
+    overflow-y: auto; /* Enable vertical scrolling when content overflows */
+    scroll-behavior: smooth; /* Smooth scrolling when scrolling */
+}
+
+/* Hide scrollbar completely */
+.nav-content::-webkit-scrollbar {
+    display: none; /* Hide the scrollbar in WebKit browsers */
+}
+
+.nav-content {
+    -ms-overflow-style: none; /* For Internet Explorer */
+    scrollbar-width: none; /* For Firefox */
+}
+
+/* Show text on hover */
+.navbar.expanded .nav-content a span {
+    display: inline;
+    opacity: 1;
+}
+
+/* Align icons and text consistently */
+.nav-content a {
+    text-align: left; /* Ensure consistent text alignment */
+}
+
+.nav-content a {
+    display: flex;
+    flex-direction: row; /* Ensure icons and text are in a row */
+    align-items: center;
+    justify-content: flex-start; /* Align icons and text to the start */
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+    width: 100%;
+    padding: 0.5em 1.5em; /* Add padding for spacing, with extra left padding */
+    padding-left: 3.5em; /* Add extra left padding for space from the edge */
+    gap: 1em; /* Space between the icon and the text */
+    transition: background-color 0.3s ease;
+}
+
+.nav-content a:hover {
+    background-color: #442714;
+    border-radius: 20px;
+}
+
+/* Ensure icons are uniform in size */
+.nav-content a img.nav-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0; /* Prevent icons from resizing */
+}
+
+/* Ensure text is hidden by default */
+.nav-content a span {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Show text on hover */
+.navbar.expanded .nav-content a span {
+    display: inline;
+    opacity: 1;
+}
+
+/* Align icons and text consistently */
+.nav-content a {
+    text-align: left; /* Ensure consistent text alignment */
+}
+
+/* Logout Modal */
+.modal {
+    color: white;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(24, 24, 24, 0.284);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    color: white;
+    background: linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0));   
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow: 0 8px 32px 0 rgba(255,255,255,0.37);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 350px;
+    width: 80%;
+}
+
+.modal-button {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Modal Button Styles */
+.modal-button {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.button {
+    color: white;
+    padding: 10px 5px;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 40px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    width: 35%; /* Make buttons of equal size */
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Ensure buttons are inline */
+}
+
+/* Button for 'Yes' (l1) */
+.button-yes {
+    color: white;
+    background: linear-gradient(135deg,rgba(255, 255, 255, 0.158),rgba(255, 255, 255, 0.141));   
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.18);
+}
+
+/* Button for 'No' (l2) */
+.button-no {
+    background-color: #a15a2bcf;
+    color: white;
+}
+
+/* Hover effect for both buttons */
+.button:hover {
+    opacity: 0.9;
+}
+
+/* Optional: Focus effect for accessibility */
+.button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+
