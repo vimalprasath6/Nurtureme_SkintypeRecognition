@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+build/
+dist/
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Machine Learning model
+*.joblib
+*.onnx
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints
+
+# Logs and cache
+*.log
+*.out
+*.err
+.cache/
+*.DS_Store
+
+# Node / React (frontend)
+node_modules/
+dist/
+build/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.*
+
+# VSCode settings
+.vscode/
