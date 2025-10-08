@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'iva66$y@-ey^=8pb2uoaa5q9qx-rvbqt2!66_u=wok5nwu+1q0'
 
 # Debug mode (set to False in production)
-DEBUG = True
+DEBUG = Tru
 
 # Allowed hosts for Vercel deployment
 ALLOWED_HOSTS = [
