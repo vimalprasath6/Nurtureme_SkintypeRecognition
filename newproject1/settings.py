@@ -1,23 +1,18 @@
 import os
 from pathlib import Path
 
-# Base directory of the project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Secret key for the Django project (keep this secure in production)
-SECRET_KEY = 'iva66$y@-ey^=8pb2uoaa5q9qx-rvbqt2!66_u=wok5nwu+1q0'
+# Secret key
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "fallback-secret-key")
 
-# Debug mode (set to False in production)
-DEBUG = True
+# Debug mode
+DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
 
-# Allowed hosts for the application
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '*',
-].split(",")
+# Allowed hosts
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost").split(",")
 
-# Installed applications, including the custom app 'myapp'
+# Installed apps
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -25,13 +20,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myapp',  # Your custom app
+    'myapp',
 ]
 
-# Middleware settings
+# Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -40,14 +34,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# Root URL configuration
 ROOT_URLCONF = 'newproject1.urls'
 
-# Templates configuration
+# Templates
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'myapp/templates'],  # Custom templates directory
+        'DIRS': [BASE_DIR / 'myapp/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -60,7 +53,7 @@ TEMPLATES = [
     },
 ]
 
-# Database configuration (default: SQLite, customize as needed)
+# Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -68,49 +61,28 @@ DATABASES = {
     }
 }
 
-# Password validation settings
+# Password validation
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
 ]
 
-# Static files settings
+# Static files
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [BASE_DIR / 'myapp/static']  # adjust if your app folder is different
+STATICFILES_DIRS = [BASE_DIR / 'myapp/static']
 
-# Default primary key field type
+# Default primary key
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Model path for loading in views
-MODEL_PATH = BASE_DIR / 'model/OG_Nurturemeorg.h5'
+# Model path (local usage only)
+MODEL_PATH = os.environ.get("MODEL_PATH", BASE_DIR / 'model/OG_Nurturemeorg.h5')
 
-# Custom error handler for template loading
-from django.template import loader
-from django.http import HttpResponse
-
-def my_view(request):
-    try:
-        # Load and render the 'index1.html' template
-        template = loader.get_template('index1.html')
-        return HttpResponse(template.render({}, request))
-    except Exception as e:
-        # Return an error message in case of issues
-        return HttpResponse(f"Template error: {e}", status=500)
-
-# Localization settings
+# Localization
 LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+TIME_ZONE = os.environ.get("TIME_ZONE", "UTC")
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
