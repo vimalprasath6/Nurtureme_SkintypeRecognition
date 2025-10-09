@@ -2,15 +2,12 @@
   "version": 2,
   "builds": [
     {
-      "src": "myapp/templates/**/*",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "myapp/static/**/*",
-      "use": "@vercel/static"
+      "src": "newproject1/wsgi.py",
+      "use": "@vercel/python"
     }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "/index.html" }
+    { "src": "/static/(.*)", "dest": "/newproject1/myapp/static/$1" },
+    { "src": "/(.*)", "dest": "newproject1/wsgi.py" }
   ]
 }
