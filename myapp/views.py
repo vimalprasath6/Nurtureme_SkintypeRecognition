@@ -26,7 +26,7 @@ model = None
 def load_model():
     global model
     try:
-        model = tf.keras.models.load_model(r'C:\Users\Anand Jyothis G\newproject1\newproject1\model\OG_Nurturemeorg.h5')
+        model = tf.keras.models.load_model(r'C:\Users\vimal\Git_Projects\newproject1\model\OG_Nurturemeorg.h5')
         logger.info("Model loaded successfully.")
     except Exception as e:
         logger.error(f"Error loading model: {e}")

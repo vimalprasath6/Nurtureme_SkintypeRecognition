@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'iva66$y@-ey^=8pb2uoaa5q9qx-rvbqt2!66_u=wok5nwu+1q0'
 
 # Debug mode (set to False in production)
-DEBUG = True
+DEBUG = False
 
 # Allowed hosts for the application
 ALLOWED_HOSTS = [
@@ -32,6 +32,7 @@ INSTALLED_APPS = [
 # Middleware settings
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -86,9 +87,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Static files settings
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / 'myapp/static/myapp',  # Custom static files directory
-]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'myapp/static']  # adjust if your app folder is different
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
