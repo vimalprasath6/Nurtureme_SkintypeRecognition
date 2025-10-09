@@ -8,15 +8,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'iva66$y@-ey^=8pb2uoaa5q9qx-rvbqt2!66_u=wok5nwu+1q0'
 
 # Debug mode (set to False in production)
-DEBUG = False
+DEBUG = True
 
 # Allowed hosts for the application
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'https://b3be-2409-4072-6e1f-218a-519e-2b41-6016-9514.ngrok-free.app',
     '*',
-]
+].split(",")
 
 # Installed applications, including the custom app 'myapp'
 INSTALLED_APPS = [
